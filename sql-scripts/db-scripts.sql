@@ -23,3 +23,15 @@ create table student
     constraint `FK_STUDENT_PROFILE` foreign key (student_profile_id) references student_profile (id) on delete no action
     on update no action    
 )
+
+# create book
+create table book
+(
+    id int not null auto_increment,
+    subject_name varchar(20),
+    edition int(4),
+    student_id int,
+    primary key(id),
+    key `FK_STUDENT_BOOK_IDX` (student_id),
+    constraint `FK_STUDENT` foreign key (student_id) references student (id) on delete no action on update no action
+)

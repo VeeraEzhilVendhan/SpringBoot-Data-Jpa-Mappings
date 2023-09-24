@@ -2,6 +2,9 @@ package com.veera.SpringBootDataJpaMappings.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="student")
 public class Student
@@ -26,6 +29,10 @@ public class Student
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="student_profile_id")
     private Student_Profile studentProfile;
+
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "student")
+    private List<Book> bookList;
+
 
     public int getId() {
         return id;
@@ -95,5 +102,23 @@ public class Student
                 ", email='" + email + '\'' +
                 ", studentProfile=" + studentProfile +
                 '}';
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
+    public void addBook(Book b)
+    {
+        if(bookList==null)
+        {
+            bookList=new ArrayList<>();
+        }
+        bookList.add(b);
+        b.setStudent(this);
     }
 }
