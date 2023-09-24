@@ -18,7 +18,7 @@ public class Book
     @Column(name="edition")
     private int edition;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="student_id")
     private Student student;
 
@@ -69,7 +69,7 @@ public class Book
                 "id=" + id +
                 ", subjectName='" + subjectName + '\'' +
                 ", edition=" + edition +
-                ", student=" + student +
+                ", student=" + student.getId() +
                 '}';
     }
 }

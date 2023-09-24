@@ -30,7 +30,7 @@ public class Student
     @JoinColumn(name="student_profile_id")
     private Student_Profile studentProfile;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "student")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "student", fetch = FetchType.EAGER)
     private List<Book> bookList;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE})
@@ -104,9 +104,7 @@ public class Student
                 ", gender='" + gender + '\'' +
                 ", grade='" + grade + '\'' +
                 ", email='" + email + '\'' +
-                ", studentProfile=" + studentProfile +
-                ", bookList=" + bookList +
-                ", courseList=" + courseList +
+                ", studentProfile=" + studentProfile.getId() +
                 '}';
     }
 

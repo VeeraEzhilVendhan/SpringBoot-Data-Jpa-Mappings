@@ -1,5 +1,6 @@
 package com.veera.SpringBootDataJpaMappings;
 
+import com.veera.SpringBootDataJpaMappings.eagerlazy.DBOperation_EagerLazy;
 import com.veera.SpringBootDataJpaMappings.manytomany.DBOperation_ManyToMany;
 import com.veera.SpringBootDataJpaMappings.onetomany.DBOperation_OnetoMany;
 import org.springframework.boot.CommandLineRunner;
@@ -18,11 +19,11 @@ public class SpringBootDataJpaMappingsApplication
 
 
 	@Bean
-	public CommandLineRunner commandLineRunner(DBOperation_ManyToMany dbOperation)
+	public CommandLineRunner commandLineRunner(DBOperation_EagerLazy dbOperation)
 	{
 		return runner -> {
-			dbOperation.save();
-			//dbOperation.read();
+			//dbOperation.save();
+			dbOperation.read();
 		};
 	}
 
