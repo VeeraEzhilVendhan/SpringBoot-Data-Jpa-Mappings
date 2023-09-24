@@ -33,6 +33,10 @@ public class Student
     @OneToMany(cascade=CascadeType.ALL,mappedBy = "student")
     private List<Book> bookList;
 
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name="student_course", joinColumns = @JoinColumn(name="student_id"),inverseJoinColumns = @JoinColumn(name="course_id"))
+    private List<Course> courseList;
+
 
     public int getId() {
         return id;
@@ -101,6 +105,8 @@ public class Student
                 ", grade='" + grade + '\'' +
                 ", email='" + email + '\'' +
                 ", studentProfile=" + studentProfile +
+                ", bookList=" + bookList +
+                ", courseList=" + courseList +
                 '}';
     }
 
@@ -120,5 +126,13 @@ public class Student
         }
         bookList.add(b);
         b.setStudent(this);
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 }

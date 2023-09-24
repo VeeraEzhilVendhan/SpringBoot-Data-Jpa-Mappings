@@ -1,8 +1,7 @@
 package com.veera.SpringBootDataJpaMappings;
 
+import com.veera.SpringBootDataJpaMappings.manytomany.DBOperation_ManyToMany;
 import com.veera.SpringBootDataJpaMappings.onetomany.DBOperation_OnetoMany;
-import com.veera.SpringBootDataJpaMappings.onetoone.bi.DB_Operation_OnetoOne_Bi;
-import com.veera.SpringBootDataJpaMappings.onetoone.uni.DB_Operation_OnetoOne_Uni;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +18,11 @@ public class SpringBootDataJpaMappingsApplication
 
 
 	@Bean
-	public CommandLineRunner commandLineRunner(DBOperation_OnetoMany dbOperation)
+	public CommandLineRunner commandLineRunner(DBOperation_ManyToMany dbOperation)
 	{
 		return runner -> {
-			//dbOperation.save();
-			dbOperation.read();
+			dbOperation.save();
+			//dbOperation.read();
 		};
 	}
 
